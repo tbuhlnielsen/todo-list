@@ -5,12 +5,18 @@ import FormLabel from '@material-ui/core/FormLabel'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 
-interface FilterProps {
-  filter: string
-  onChange(event: React.ChangeEvent<HTMLInputElement>): void
+export type Filter = 'all' | 'complete' | 'incomplete'
+
+interface Props {
+  filter: Filter
+  onChange(filter: Filter): void
 }
 
-const Filter = (props: FilterProps) => {
+const FilterButtonGroup = (props: Props) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    return props.onChange(event.target.value as Filter)
+  }
+
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend">Show</FormLabel>
@@ -18,7 +24,7 @@ const Filter = (props: FilterProps) => {
         aria-label="filter"
         name="filter"
         value={props.filter}
-        onChange={props.onChange}
+        onChange={handleChange}
       >
         <FormControlLabel value="all" control={<Radio />} label="All" />
         <FormControlLabel
@@ -36,4 +42,4 @@ const Filter = (props: FilterProps) => {
   )
 }
 
-export default Filter
+export default FilterButtonGroup
