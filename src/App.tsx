@@ -1,17 +1,32 @@
 import * as React from 'react'
 import Container from '@material-ui/core/Container'
+import { createTheme } from '@material-ui/core'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import { ThemeProvider } from '@material-ui/styles'
 import EditableTodoList from './components/EditableTodoList'
 import Header from './components/Header'
-import GlobalStateProvider from './contexts'
+import { useGlobalState } from './contexts'
 
 const App = () => {
+  const { state } = useGlobalState()
+  const colorMode = state.colorMode
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: { type: colorMode }
+      }),
+    [colorMode]
+  )
+
   return (
-    <GlobalStateProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Container maxWidth="sm">
         <Header />
         <EditableTodoList />
       </Container>
-    </GlobalStateProvider>
+    </ThemeProvider>
   )
 }
 
