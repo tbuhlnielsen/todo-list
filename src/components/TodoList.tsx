@@ -1,27 +1,38 @@
-import React from 'react'
+import * as React from 'react'
 import List from '@material-ui/core/List'
 import TodoListItem from './TodoListItem'
-import { Todo } from '../types'
+import { useTodos } from '../contexts/todos'
+import { Filter, Todo } from '../types'
+import { useFilter } from '../contexts/filter'
 
-interface Props {
-  todos: Todo[]
-  onToggleItem(id: string): void
-  onDeleteItem(id: string): void
-}
+const TodoList = () => {
+  const { todos } = useTodos()
+  const { filter } = useFilter()
 
-const TodoList = (props: Props) => {
+  const filteredTodos = applyFilter(todos, filter)
+
   return (
     <List>
-      {props.todos.map(todo => (
-        <TodoListItem
-          key={todo.id}
-          item={todo}
-          onToggle={props.onToggleItem}
-          onDelete={props.onDeleteItem}
-        />
+      {filteredTodos.map(todo => (
+        <TodoListItem key={todo.id} item={todo} />
       ))}
     </List>
   )
+}
+
+const applyFilter = (todos: Todo[], filter: Filter) => {
+  return todos.filter(todo => {
+    if (filter === 'all') {
+      return true
+    }
+    if (filter === 'complete' && todo.complete) {
+      return true
+    }
+    if (filter === 'incomplete' && !todo.complete) {
+      return true
+    }
+    return false
+  })
 }
 
 export default TodoList

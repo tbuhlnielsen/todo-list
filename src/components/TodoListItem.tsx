@@ -7,22 +7,28 @@ import Checkbox from '@material-ui/core/Checkbox'
 import IconButton from '@material-ui/core/IconButton'
 import ClearIcon from '@material-ui/icons/Clear'
 import { Todo } from '../types'
+import { useTodos } from '../contexts/todos'
 
 interface Props {
   item: Todo
-  onToggle(id: string): void
-  onDelete(id: string): void
 }
 
 const TodoListItem = (props: Props) => {
   const { id, text, complete } = props.item
+  const { dispatchTodos } = useTodos()
 
   const handleClick = () => {
-    props.onToggle(id)
+    dispatchTodos({
+      type: 'item/toggle',
+      payload: { id }
+    })
   }
 
   const handleDelete = () => {
-    props.onDelete(id)
+    dispatchTodos({
+      type: 'item/delete',
+      payload: { id }
+    })
   }
 
   const labelId = `todo-list-label-${id}`
