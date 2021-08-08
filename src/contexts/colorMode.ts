@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { Action, ColorMode } from '../types'
 
 const colorModeReducer = (mode: ColorMode, action: Action) => {

@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { Action, Filter } from '../types'
 
 const filterReducer = (filter: Filter, action: Action) => {
