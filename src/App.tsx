@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import Container from '@material-ui/core/Container'
 import EditableTodoList from './components/EditableTodoList'
 import { FilterProvider } from './contexts/filter'
