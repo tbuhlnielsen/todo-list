@@ -1,14 +1,6 @@
 import * as React from 'react'
 import { nanoid } from 'nanoid'
-import { createDefinedContext } from './util'
 import { Action, Todo } from '../types'
-
-interface ITodoContext {
-  todos: Todo[]
-  dispatchTodos: React.Dispatch<Action>
-}
-
-const [useTodos, TodoContext] = createDefinedContext<ITodoContext>()
 
 const initTodos: Todo[] = [
   {
@@ -48,18 +40,4 @@ const todosReducer = (todos: typeof initTodos, action: Action) => {
   }
 }
 
-interface Props {
-  children: React.ReactNode
-}
-
-const TodosProvider = (props: Props) => {
-  const [todos, dispatchTodos] = React.useReducer(todosReducer, initTodos)
-
-  return (
-    <TodoContext.Provider value={{ todos, dispatchTodos }}>
-      {props.children}
-    </TodoContext.Provider>
-  )
-}
-
-export { TodosProvider as default, useTodos, initTodos, todosReducer }
+export { initTodos, todosReducer }
