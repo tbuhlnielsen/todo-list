@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { nanoid } from 'nanoid'
 import { createDefinedContext } from './util'
 import { Action, Todo } from '../types'
 
@@ -9,15 +10,14 @@ interface ITodoContext {
 
 const [useTodos, TodoContext] = createDefinedContext<ITodoContext>()
 
-// TODO: use id generator.
 const initTodos: Todo[] = [
   {
-    id: '0',
+    id: nanoid(),
     text: 'Cook dinner',
     complete: true
   },
   {
-    id: '1',
+    id: nanoid(),
     text: 'Wash dishes',
     complete: false
   }
@@ -25,6 +25,13 @@ const initTodos: Todo[] = [
 
 const todosReducer = (todos: typeof initTodos, action: Action) => {
   switch (action.type) {
+    case 'item/add':
+      return todos.concat({
+        id: nanoid(),
+        text: action.payload.text,
+        complete: false
+      })
+
     case 'item/toggle':
       return todos.map(todo => {
         if (todo.id === action.payload.id) {

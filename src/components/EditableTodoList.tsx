@@ -1,12 +1,20 @@
 import * as React from 'react'
 import FilterButtonGroup from './FilterButtonGroup'
+import NewItemForm from './NewItemForm'
 import TodoList from './TodoList'
+
+const formStyles = {
+  marginTop: '24px'
+}
 
 const EditableTodoList = () => {
   return (
     <>
       <FilterButtonGroup />
-      <TodoList />
+      <div style={formStyles}>
+        <NewItemForm />
+        <TodoList />
+      </div>
     </>
   )
 }
