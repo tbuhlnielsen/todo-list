@@ -1,9 +1,28 @@
 import * as React from 'react'
+import { nanoid } from 'nanoid'
 import { createDefinedContext, useCombinedReducer } from './util'
-import { initTodos, todosReducer } from './todos'
+import { todosReducer } from './todos'
 import { filterReducer } from './filter'
 import { colorModeReducer } from './colorMode'
 import { Action } from '../types'
+
+const initTodos = [
+  {
+    id: nanoid(),
+    text: 'Hello, world!',
+    complete: true
+  },
+  {
+    id: nanoid(),
+    text: `This is an example todo item.`,
+    complete: true
+  },
+  {
+    id: nanoid(),
+    text: 'Add your own todo items in the textbox above.',
+    complete: false
+  }
+]
 
 interface IGlobalStateContext {
   state: any

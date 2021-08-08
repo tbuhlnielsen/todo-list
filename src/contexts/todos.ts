@@ -1,20 +1,7 @@
 import { nanoid } from 'nanoid'
 import { Action, Todo } from '../types'
 
-const initTodos: Todo[] = [
-  {
-    id: nanoid(),
-    text: 'Cook dinner',
-    complete: true
-  },
-  {
-    id: nanoid(),
-    text: 'Wash dishes',
-    complete: false
-  }
-]
-
-const todosReducer = (todos: typeof initTodos, action: Action) => {
+const todosReducer = (todos: Todo[], action: Action) => {
   switch (action.type) {
     case 'item/add':
       return todos.concat({
@@ -39,4 +26,4 @@ const todosReducer = (todos: typeof initTodos, action: Action) => {
   }
 }
 
-export { initTodos, todosReducer }
+export { todosReducer }
