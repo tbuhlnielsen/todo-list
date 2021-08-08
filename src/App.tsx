@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import Container from '@material-ui/core/Container'
-import FilterButtonGroup, { Filter } from './components/FilterButtonGroup'
-import TodoList from './components/TodoList'
-import { ITodo } from './components/TodoListItem'
+import EditableTodoList from './components/EditableTodoList'
+import { Filter, Todo } from './types'
 
 // TODO: use id generator.
-const initTodos: ITodo[] = [
+const initTodos: Todo[] = [
   {
     id: '0',
     text: 'Cook dinner',
@@ -20,7 +19,7 @@ const initTodos: ITodo[] = [
 
 const App = () => {
   const [filter, setFilter] = useState<Filter>('all')
-  const [todos, setTodos] = useState<ITodo[]>(initTodos)
+  const [todos, setTodos] = useState<Todo[]>(initTodos)
 
   const handleToggleItem = (id: string) => {
     const newTodos = todos.map(todo => {
@@ -32,18 +31,28 @@ const App = () => {
     setTodos(newTodos)
   }
 
+  const handleDeleteItem = (id: string) => {
+    const newTodos = todos.filter(todo => todo.id !== id)
+    setTodos(newTodos)
+  }
+
   const filteredTodos = applyFilter(todos, filter)
 
   return (
     <Container maxWidth="sm">
       <h1>Todo List</h1>
-      <FilterButtonGroup filter={filter} onChange={setFilter} />
-      <TodoList todos={filteredTodos} onToggleItem={handleToggleItem} />
+      <EditableTodoList
+        filter={filter}
+        todos={filteredTodos}
+        onChangeFilter={setFilter}
+        onToggleItem={handleToggleItem}
+        onDeleteItem={handleDeleteItem}
+      />
     </Container>
   )
 }
 
-const applyFilter = (todos: ITodo[], filter: Filter) => {
+const applyFilter = (todos: Todo[], filter: Filter) => {
   return todos.filter(todo => {
     if (filter === 'all') {
       return true

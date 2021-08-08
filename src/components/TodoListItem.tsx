@@ -5,17 +5,13 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import ListItemText from '@material-ui/core/ListItemText'
 import Checkbox from '@material-ui/core/Checkbox'
 import IconButton from '@material-ui/core/IconButton'
-import DeleteIcon from '@material-ui/icons/Delete'
-
-export interface ITodo {
-  id: string
-  text: string
-  complete: boolean
-}
+import ClearIcon from '@material-ui/icons/Clear'
+import { Todo } from '../types'
 
 interface Props {
-  item: ITodo
+  item: Todo
   onToggle(id: string): void
+  onDelete(id: string): void
 }
 
 const TodoListItem = (props: Props) => {
@@ -25,7 +21,11 @@ const TodoListItem = (props: Props) => {
     props.onToggle(id)
   }
 
-  const labelId = `checkbox-list-label-${id}`
+  const handleDelete = () => {
+    props.onDelete(id)
+  }
+
+  const labelId = `todo-list-label-${id}`
   return (
     <ListItem role="listitem" button onClick={handleClick}>
       <ListItemIcon>
@@ -39,8 +39,8 @@ const TodoListItem = (props: Props) => {
       </ListItemIcon>
       <ListItemText id={labelId} primary={text} />
       <ListItemSecondaryAction>
-        <IconButton edge="end" aria-label="delete">
-          <DeleteIcon />
+        <IconButton edge="end" aria-label="delete" onClick={handleDelete}>
+          <ClearIcon />
         </IconButton>
       </ListItemSecondaryAction>
     </ListItem>
