@@ -1,13 +1,14 @@
 import * as React from 'react'
 import Container from '@material-ui/core/Container'
-import GlobalStateProvider from './contexts'
 import EditableTodoList from './components/EditableTodoList'
+import Header from './components/Header'
+import GlobalStateProvider from './contexts'
 
 const App = () => {
   return (
     <GlobalStateProvider>
       <Container maxWidth="sm">
-        <h1>Todo List</h1>
+        <Header />
         <EditableTodoList />
       </Container>
     </GlobalStateProvider>
