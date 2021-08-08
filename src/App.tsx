@@ -3,6 +3,7 @@ import Container from '@material-ui/core/Container'
 import { createTheme } from '@material-ui/core'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/styles'
+import ColorModeSwitch from './components/ColorModeSwitch'
 import EditableTodoList from './components/EditableTodoList'
 import Header from './components/Header'
 import { useGlobalState } from './contexts'
@@ -22,6 +23,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <ColorModeSwitch />
       <Container maxWidth="sm">
         <Header />
         <EditableTodoList />
