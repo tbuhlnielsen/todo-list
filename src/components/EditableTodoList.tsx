@@ -4,10 +4,10 @@ import TodoList from './TodoList'
 
 const EditableTodoList = () => {
   return (
-    <div>
+    <>
       <FilterButtonGroup />
       <TodoList />
-    </div>
+    </>
   )
 }
 

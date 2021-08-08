@@ -1,5 +1,5 @@
 import * as React from 'react'
-import createDefinedContext from './util'
+import { createDefinedContext } from './util'
 import { Action, Filter } from '../types'
 
 interface IFilterContext {
@@ -7,7 +7,7 @@ interface IFilterContext {
   dispatchFilter: React.Dispatch<Action>
 }
 
-export const [useFilter, FilterContext] = createDefinedContext<IFilterContext>()
+const [useFilter, FilterContext] = createDefinedContext<IFilterContext>()
 
 const filterReducer = (filter: Filter, action: Action) => {
   switch (action.type) {
@@ -15,7 +15,7 @@ const filterReducer = (filter: Filter, action: Action) => {
       return action.payload.filter
 
     default:
-      throw new Error('unrecognised action type')
+      return filter // ignore unrecognised
   }
 }
 
@@ -23,7 +23,7 @@ interface Props {
   children: React.ReactNode
 }
 
-export const FilterProvider = (props: Props) => {
+const FilterProvider = (props: Props) => {
   const [filter, dispatchFilter] = React.useReducer(filterReducer, 'all')
 
   return (
@@ -32,3 +32,5 @@ export const FilterProvider = (props: Props) => {
     </FilterContext.Provider>
   )
 }
+
+export { FilterProvider as default, filterReducer, useFilter }

@@ -5,16 +5,16 @@ import FormLabel from '@material-ui/core/FormLabel'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import { Filter } from '../types'
-import { useFilter } from '../contexts/filter'
+import { useGlobalState } from '../contexts'
 
 const FilterButtonGroup = () => {
-  const { filter, dispatchFilter } = useFilter()
+  const { state, dispatch } = useGlobalState()
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newFilter = event.target.value as Filter
-    dispatchFilter({
+    const filter = event.target.value as Filter
+    dispatch({
       type: 'filter/set',
-      payload: { filter: newFilter }
+      payload: { filter }
     })
   }
 
@@ -25,7 +25,7 @@ const FilterButtonGroup = () => {
         row
         aria-label="filter"
         name="filter"
-        value={filter}
+        value={state.filter}
         onChange={handleChange}
       >
         <FormControlLabel value="all" control={<Radio />} label="All" />

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import createDefinedContext from './util'
+import { createDefinedContext } from './util'
 import { Action, Todo } from '../types'
 
 interface ITodoContext {
@@ -7,7 +7,7 @@ interface ITodoContext {
   dispatchTodos: React.Dispatch<Action>
 }
 
-export const [useTodos, TodoContext] = createDefinedContext<ITodoContext>()
+const [useTodos, TodoContext] = createDefinedContext<ITodoContext>()
 
 // TODO: use id generator.
 const initTodos: Todo[] = [
@@ -37,7 +37,7 @@ const todosReducer = (todos: typeof initTodos, action: Action) => {
       return todos.filter(todo => todo.id !== action.payload.id)
 
     default:
-      throw new Error('unrecognised action type')
+      return todos // ignore unrecognised
   }
 }
 
@@ -45,7 +45,7 @@ interface Props {
   children: React.ReactNode
 }
 
-export const TodosProvider = (props: Props) => {
+const TodosProvider = (props: Props) => {
   const [todos, dispatchTodos] = React.useReducer(todosReducer, initTodos)
 
   return (
@@ -54,3 +54,5 @@ export const TodosProvider = (props: Props) => {
     </TodoContext.Provider>
   )
 }
+
+export { TodosProvider as default, useTodos, initTodos, todosReducer }
