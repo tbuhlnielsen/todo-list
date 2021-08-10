@@ -14,6 +14,7 @@ const ColorModeSwitch = (props: Props) => {
   const colorMode = props.mode
   const oppositeMode = colorMode === 'light' ? 'dark' : 'light'
   const label = `Activate ${oppositeMode} mode`
+  const icon = colorMode === 'light' ? <Brightness4Icon /> : <Brightness7Icon />
 
   const handleClick = () => {
     props.onToggle(oppositeMode)
@@ -23,8 +24,7 @@ const ColorModeSwitch = (props: Props) => {
     <div style={{ position: 'fixed', right: '40px', top: '10px' }}>
       <Tooltip title={label} arrow>
         <IconButton onClick={handleClick} aria-label={label}>
-          {colorMode === 'light' && <Brightness4Icon />}
-          {colorMode === 'dark' && <Brightness7Icon />}
+          {icon}
         </IconButton>
       </Tooltip>
     </div>
