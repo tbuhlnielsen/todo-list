@@ -3,7 +3,6 @@ import { nanoid } from 'nanoid'
 import { createDefinedContext, useCombinedReducer } from './util'
 import { todosReducer } from './todos'
 import { filterReducer } from './filter'
-import { colorModeReducer } from './colorMode'
 import { Action } from '../types'
 
 const initTodos = [
@@ -39,8 +38,7 @@ interface Props {
 const GlobalStateProvider = (props: Props) => {
   const [state, dispatch] = useCombinedReducer({
     todos: React.useReducer(todosReducer, initTodos),
-    filter: React.useReducer(filterReducer, 'all'),
-    colorMode: React.useReducer(colorModeReducer, 'light')
+    filter: React.useReducer(filterReducer, 'all')
   })
 
   return (
