@@ -4,15 +4,12 @@ import FormControl from '@material-ui/core/FormControl'
 import FormLabel from '@material-ui/core/FormLabel'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
+import { useFilter } from '../contexts/filter'
 import { Filter } from '../types'
 
-interface Props {
-  filter: Filter
-  setFilter(filter: Filter): void
-}
+const FilterButtonGroup = () => {
+  const { filter, setFilter } = useFilter()
 
-const FilterButtonGroup = (props: Props) => {
-  const { filter, setFilter } = props
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend">Show</FormLabel>

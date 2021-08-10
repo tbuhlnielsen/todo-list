@@ -1,23 +1,23 @@
 import * as React from 'react'
 import List from '@material-ui/core/List'
 import TodoListItem from './TodoListItem'
-import { Filter, Todo } from '../types'
 import { useTodos } from '../contexts/todos'
+import { useFilter } from '../contexts/filter'
+import { Filter, Todo } from '../types'
 
-interface Props {
-  filter: Filter
-}
-
-const TodoList = (props: Props) => {
+const TodoList = () => {
   const { todos } = useTodos()
-  const { filter } = props
+  const { filter } = useFilter()
 
   const filteredTodos = applyFilter(todos, filter)
-  const todoItems = filteredTodos.map(todo => (
-    <TodoListItem key={todo.id} item={todo} />
-  ))
 
-  return <List>{todoItems}</List>
+  return (
+    <List>
+      {filteredTodos.map(todo => (
+        <TodoListItem key={todo.id} item={todo} />
+      ))}
+    </List>
+  )
 }
 
 const applyFilter = (todos: Todo[], filter: Filter) => {
