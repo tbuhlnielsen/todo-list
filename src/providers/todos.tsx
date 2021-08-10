@@ -1,32 +1,18 @@
 import * as React from 'react'
-import { nanoid } from 'nanoid'
 import TodosContext from '../contexts/todos'
 import { todosReducer } from '../reducers/todos'
-
-const initTodos = [
-  {
-    id: nanoid(),
-    text: 'Hello, world!',
-    complete: true
-  },
-  {
-    id: nanoid(),
-    text: `This is an example todo item.`,
-    complete: true
-  },
-  {
-    id: nanoid(),
-    text: 'Add your own todo items in the textbox above.',
-    complete: false
-  }
-]
+import { Todo } from '../types'
 
 interface Props {
   children: React.ReactNode
+  initValue?: Todo[]
 }
 
 const TodosProvider = (props: Props) => {
-  const [todos, dispatchTodos] = React.useReducer(todosReducer, initTodos)
+  const [todos, dispatchTodos] = React.useReducer(
+    todosReducer,
+    props.initValue || []
+  )
 
   return (
     <TodosContext.Provider value={{ todos, dispatchTodos }}>
