@@ -7,7 +7,7 @@ import Checkbox from '@material-ui/core/Checkbox'
 import IconButton from '@material-ui/core/IconButton'
 import ClearIcon from '@material-ui/icons/Clear'
 import { Todo } from '../types'
-import { useGlobalState } from '../contexts'
+import { useTodos } from '../contexts/todos'
 
 interface Props {
   item: Todo
@@ -15,17 +15,17 @@ interface Props {
 
 const TodoListItem = (props: Props) => {
   const { id, text, complete } = props.item
-  const { dispatch } = useGlobalState()
+  const { dispatchTodos } = useTodos()
 
   const handleClick = () => {
-    dispatch({
+    dispatchTodos({
       type: 'item/toggle',
       payload: { id }
     })
   }
 
   const handleDelete = () => {
-    dispatch({
+    dispatchTodos({
       type: 'item/delete',
       payload: { id }
     })

@@ -6,7 +6,6 @@ import { ThemeProvider } from '@material-ui/styles'
 import ColorModeSwitch from './ColorModeSwitch'
 import EditableTodoList from './EditableTodoList'
 import Header from './Header'
-import GlobalStateProvider from '../contexts'
 import { ColorMode } from '../types'
 
 const App = () => {
@@ -18,16 +17,14 @@ const App = () => {
   )
 
   return (
-    <GlobalStateProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <ColorModeSwitch mode={colorMode} onToggle={setColorMode} />
-        <Container maxWidth="sm">
-          <Header />
-          <EditableTodoList />
-        </Container>
-      </ThemeProvider>
-    </GlobalStateProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <ColorModeSwitch mode={colorMode} onToggle={setColorMode} />
+      <Container maxWidth="sm">
+        <Header />
+        <EditableTodoList />
+      </Container>
+    </ThemeProvider>
   )
 }
 

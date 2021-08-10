@@ -5,11 +5,11 @@ import IconButton from '@material-ui/core/IconButton'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import InputLabel from '@material-ui/core/InputLabel'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
-import { useGlobalState } from '../contexts'
+import { useTodos } from '../contexts/todos'
 
 const NewItemForm = () => {
   const [text, setText] = React.useState('')
-  const { dispatch } = useGlobalState()
+  const { dispatchTodos } = useTodos()
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value)
@@ -17,7 +17,7 @@ const NewItemForm = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    dispatch({
+    dispatchTodos({
       type: 'item/add',
       payload: { text }
     })

@@ -2,6 +2,7 @@ import * as React from 'react'
 import FilterButtonGroup from './FilterButtonGroup'
 import NewItemForm from './NewItemForm'
 import TodoList from './TodoList'
+import TodosProvider from '../providers/todos'
 import { Filter } from '../types'
 
 const EditableTodoList = () => {
@@ -10,10 +11,12 @@ const EditableTodoList = () => {
   return (
     <>
       <FilterButtonGroup filter={filter} setFilter={setFilter} />
-      <div style={{ marginTop: '24px' }}>
-        <NewItemForm />
+      <TodosProvider>
+        <div style={{ marginTop: '24px' }}>
+          <NewItemForm />
+        </div>
         <TodoList filter={filter} />
-      </div>
+      </TodosProvider>
     </>
   )
 }
