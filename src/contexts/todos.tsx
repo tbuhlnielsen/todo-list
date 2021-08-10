@@ -1,7 +1,14 @@
 import * as React from 'react'
-import TodosContext from '../contexts/todos'
 import { todosReducer } from '../reducers/todos'
-import { Todo } from '../types'
+import { createDefinedContext } from './util'
+import { Action, Todo } from '../types'
+
+interface ITodosContext {
+  todos: Todo[]
+  dispatchTodos(action: Action): void
+}
+
+const [useTodos, TodosContext] = createDefinedContext<ITodosContext>()
 
 interface Props {
   children: React.ReactNode
@@ -21,4 +28,4 @@ const TodosProvider = (props: Props) => {
   )
 }
 
-export default TodosProvider
+export { TodosProvider as default, useTodos }

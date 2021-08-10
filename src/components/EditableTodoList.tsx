@@ -3,8 +3,8 @@ import { nanoid } from 'nanoid'
 import FilterButtonGroup from './FilterButtonGroup'
 import NewItemForm from './NewItemForm'
 import TodoList from './TodoList'
-import FilterProvider from '../providers/filter'
-import TodosProvider from '../providers/todos'
+import FilterProvider from '../contexts/filter'
+import TodosProvider from '../contexts/todos'
 
 const initTodos = [
   {

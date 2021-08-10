@@ -1,6 +1,13 @@
 import * as React from 'react'
-import FilterContext from '../contexts/filter'
+import { createDefinedContext } from './util'
 import { Filter } from '../types'
+
+interface IFilterContext {
+  filter: Filter
+  setFilter(filter: Filter): void
+}
+
+const [useFilter, FilterContext] = createDefinedContext<IFilterContext>()
 
 interface Props {
   children: React.ReactNode
@@ -17,4 +24,4 @@ const FilterProvider = (props: Props) => {
   )
 }
 
-export default FilterProvider
+export { FilterProvider as default, useFilter }
