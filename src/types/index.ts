@@ -12,4 +12,3 @@ export type Action =
   | { type: 'item/add'; payload: { text: string } }
   | { type: 'item/toggle'; payload: { id: string } }
   | { type: 'item/delete'; payload: { id: string } }
-  | { type: 'filter/set'; payload: { filter: Filter } }
