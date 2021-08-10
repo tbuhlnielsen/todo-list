@@ -4,10 +4,15 @@ import TodoListItem from './TodoListItem'
 import { useGlobalState } from '../contexts'
 import { Filter, Todo } from '../types'
 
-const TodoList = () => {
-  const { state } = useGlobalState()
+interface Props {
+  filter: Filter
+}
 
-  const filteredTodos = applyFilter(state.todos, state.filter)
+const TodoList = (props: Props) => {
+  const { state } = useGlobalState()
+  const { filter } = props
+
+  const filteredTodos = applyFilter(state.todos, filter)
 
   return (
     <List>
