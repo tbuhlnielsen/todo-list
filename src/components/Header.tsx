@@ -1,12 +1,8 @@
 import * as React from 'react'
 
-const headerStyles: React.CSSProperties = {
-  textAlign: 'center'
-}
-
 const Header = () => {
   return (
-    <header style={headerStyles}>
+    <header style={{ textAlign: 'center' }}>
       <h1>Todo List</h1>
     </header>
   )
