@@ -38,6 +38,7 @@ const NewItemForm = () => {
             </InputAdornment>
           }
           required
+          autoFocus
         />
       </FormControl>
     </form>
