@@ -9,7 +9,7 @@ const TodoList = () => {
   const { todos } = useTodos()
   const { filter } = useFilter()
 
-  const filteredTodos = applyFilter(todos, filter)
+  const filteredTodos = applyFilter(todos.present, filter)
 
   return (
     <List>

@@ -1,30 +1,45 @@
 import * as React from 'react'
+import { nanoid } from 'nanoid'
 import Container from '@material-ui/core/Container'
-import { createTheme } from '@material-ui/core'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import { ThemeProvider } from '@material-ui/styles'
-import ColorModeSwitch from './ColorModeSwitch'
 import EditableTodoList from './EditableTodoList'
 import Header from './Header'
-import { ColorMode } from '../types'
+import TopBar from './TopBar'
+import ThemeProvider from '../contexts/theme'
+import TodosProvider from '../contexts/todos'
+
+const initTodos = {
+  past: [],
+  present: [
+    {
+      id: nanoid(),
+      text: 'Hello, world!',
+      complete: true
+    },
+    {
+      id: nanoid(),
+      text: `This is an example todo item.`,
+      complete: true
+    },
+    {
+      id: nanoid(),
+      text: 'Add your own todo items in the textbox above.',
+      complete: false
+    }
+  ],
+  future: []
+}
 
 const App = () => {
-  const [colorMode, setColorMode] = React.useState<ColorMode>('light')
-
-  const theme = React.useMemo(
-    () => createTheme({ palette: { type: colorMode } }),
-    [colorMode]
-  )
-
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <ColorModeSwitch mode={colorMode} onToggle={setColorMode} />
-      <Container maxWidth="sm">
-        <Header />
-        <EditableTodoList />
-      </Container>
-    </ThemeProvider>
+    <TodosProvider initValue={initTodos}>
+      <ThemeProvider>
+        <TopBar />
+        <Container maxWidth="sm">
+          <Header />
+          <EditableTodoList />
+        </Container>
+      </ThemeProvider>
+    </TodosProvider>
   )
 }
 

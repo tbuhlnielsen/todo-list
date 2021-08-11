@@ -9,6 +9,8 @@ export interface Todo {
 }
 
 export type Action =
+  | { type: 'undo' }
+  | { type: 'redo' }
   | { type: 'item/add'; payload: { text: string } }
   | { type: 'item/toggle'; payload: { id: string } }
   | { type: 'item/delete'; payload: { id: string } }
