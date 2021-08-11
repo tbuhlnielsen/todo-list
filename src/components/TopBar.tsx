@@ -26,11 +26,7 @@ const TopBar = () => {
   )
 }
 
-const containerStyles: React.CSSProperties = {
-  width: '100%',
-  position: 'fixed',
-  top: '10px',
-  right: '20px',
+const containerStyles = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end'

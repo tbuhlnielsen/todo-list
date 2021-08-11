@@ -7,10 +7,10 @@ import FilterProvider from '../contexts/filter'
 const EditableTodoList = () => {
   return (
     <FilterProvider initValue="all">
-      <FilterButtonGroup />
-      <div style={{ marginTop: '24px' }}>
-        <NewItemForm />
+      <div style={{ margin: '16px 0' }}>
+        <FilterButtonGroup />
       </div>
+      <NewItemForm />
       <TodoList />
     </FilterProvider>
   )

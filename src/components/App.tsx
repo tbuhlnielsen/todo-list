@@ -33,8 +33,8 @@ const App = () => {
   return (
     <TodosProvider initValue={initTodos}>
       <ThemeProvider>
-        <TopBar />
         <Container maxWidth="sm">
+          <TopBar />
           <Header />
           <EditableTodoList />
         </Container>
