@@ -6,20 +6,20 @@ const todosReducer = (todos: Todo[], action: Action) => {
     case 'item/add':
       return todos.concat({
         id: nanoid(),
-        text: action.payload.text,
+        text: action.text,
         complete: false
       })
 
     case 'item/toggle':
       return todos.map(todo => {
-        if (todo.id === action.payload.id) {
+        if (todo.id === action.id) {
           return { ...todo, complete: !todo.complete }
         }
         return todo
       })
 
     case 'item/delete':
-      return todos.filter(todo => todo.id !== action.payload.id)
+      return todos.filter(todo => todo.id !== action.id)
 
     default:
       return todos // ignore unrecognised

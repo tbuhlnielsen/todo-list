@@ -17,10 +17,7 @@ const NewItemForm = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    dispatchTodos({
-      type: 'item/add',
-      payload: { text }
-    })
+    dispatchTodos({ type: 'item/add', text })
     setText('')
   }
 

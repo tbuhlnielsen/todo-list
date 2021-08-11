@@ -18,17 +18,11 @@ const TodoListItem = (props: Props) => {
   const { dispatchTodos } = useTodos()
 
   const handleClick = () => {
-    dispatchTodos({
-      type: 'item/toggle',
-      payload: { id }
-    })
+    dispatchTodos({ type: 'item/toggle', id })
   }
 
   const handleDelete = () => {
-    dispatchTodos({
-      type: 'item/delete',
-      payload: { id }
-    })
+    dispatchTodos({ type: 'item/delete', id })
   }
 
   const labelId = `todo-list-label-${id}`
